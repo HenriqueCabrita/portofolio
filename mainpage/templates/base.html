@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <!-- Elegant Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter:700&display=swap" rel="stylesheet">
+
+    <title>Portfolio</title>
+    <style>
+        body {
+            background-color: #0d253f;
+            color: #f5f6fa;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .navbar-wrapper {
+            margin: 48px auto 0 auto;
+            padding: 0 24px;
+        }
+        .custom-navbar {
+            background-color: #0d253f;
+            border: 3px solid #26a0da; /* Bold, tech-inspired border */
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(38,160,218,0.08);
+            padding: 18px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .about-me-absolute {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            margin-left: 0 !important;
+            /* Ensures it sits above other content if needed */
+            z-index: 2;
+        }
+        .navbar-brand {
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #f5f6fa !important;
+            text-transform: uppercase; /* Optional: for a bold, branded look */
+        }
+        .nav-link {
+            color: #f5f6fa !important;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        .nav-link-center {
+            margin-left: 0 !important;
+        }
+        .nav-link {
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: #26a0da !important;
+        }
+        .btn-contact {
+            color: #f5f6fa;
+            background-color: #26a0da;
+            border: 2px solid #26a0da;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 8px 22px;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+        .btn-contact:hover, .btn-contact:focus {
+            background-color: #1681b5;
+            border-color: #1681b5;
+            color: #ffffff;
+            text-decoration: none;
+            outline: none;
+        }
+        .nav-side {
+            min-width: 180px; /* Adjust as needed for your content */
+            display: flex;
+            align-items: center;
+        }
+        .left-side {
+            justify-content: flex-start;
+        }
+        .right-side {
+            justify-content: flex-end;
+        }
+        .flex-grow-1 .nav-link-center {
+            margin-left: 0 !important;
+        }
+        .image-hover-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-description-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(13, 37, 63, 0.82); /* navy blue with opacity */
+            color: #f5f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 24px;
+            transition: opacity 0.3s;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .image-hover-card:hover .image-description-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar-wrapper">
+       <nav class="custom-navbar position-relative d-flex align-items-center">
+            <span class="navbar-brand">Henrique Cabrita</span>
+            <a class="nav-link nav-link-center about-me-absolute" href="{% url 'about' %}">About Me</a>
+            {% if request.path == '/' %}
+                <a class="btn btn-contact my-2 my-sm-0 ml-auto" href="{% url 'contact' %}">Contact Me</a>
+            {% elif request.path == '/contact_me/' %}
+                <a class="btn btn-contact my-2 my-sm-0 ml-auto" href="{% url 'home' %}">Go Back</a>
+            {% elif request.path == '/about_me/' %}
+                <a class="btn btn-contact my-2 my-sm-0 ml-auto" href="{% url 'home' %}">Go Back</a>
+            {% endif %}
+        </nav>
+
+    </div>
+
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
